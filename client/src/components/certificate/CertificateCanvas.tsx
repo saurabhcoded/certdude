@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import Canvas from "./Canvas";
 
 export const CertificateCanvas = () => {
   return (
-    <div>CertificateCanvas</div>
-  )
-}
+    <div className="border border-dashed border-gray-900/2">
+      <Canvas />
+    </div>
+  );
+};
