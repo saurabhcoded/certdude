@@ -5,7 +5,7 @@ import { CertificateDownload } from "..";
 import DefaultImage from "../templates/template1.png";
 
 const Canvas = (props: any) => {
-  const [baseImage, setBaseImage] = useState<File | null>(DefaultImage);
+  const [baseImage, setBaseImage] = useState<File | string | null>(DefaultImage);
   const { title, desc, fields } = useCertificate();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
