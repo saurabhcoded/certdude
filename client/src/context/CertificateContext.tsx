@@ -6,7 +6,7 @@ const CertificateContext = createContext<ContextProps | null>(null);
 let descriptionText = "Congratulations on achieving excellence in our React Course! This Certificate of Achievement recognizes your dedication, skill, and commitment to mastering React's concepts and techniques. May your accomplishments continue to pave the way for your successful journey in the world of web development.";
 
 let defaultFields: FieldsType[] = [
-  { FD: "center", FM: "inter", FS: 51, FW: "500", L: 444, LH: 24, MW: 400, T: 245, color: "#ffde59", image: null, text: "Saurabh Sharma", type: "text" },
+  { FD: "center", FM: "inter", FS: 51, FW: "500", L: 444, LH: 24, MW: 400, T: 245, color: "#ffde59", image: "", text: "Saurabh Sharma", type: "text" },
   {
     FD: "center",
     FM: "inter",
