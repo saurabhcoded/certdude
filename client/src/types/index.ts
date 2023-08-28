@@ -16,7 +16,7 @@ export interface StateField {
   LH: number; // Line Height
 }
 export interface FieldsType {
-  image: File | string; //Text
+  image: File | null; //Text
   color: string;
   FW: string;
   text: string | null; //Text
