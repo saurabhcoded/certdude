@@ -1,6 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { ChevronDownIcon, ClipboardDocumentCheckIcon, ClipboardDocumentIcon, PencilIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
+import { ClipboardDocumentCheckIcon, ClipboardDocumentIcon, PencilIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
 import { Avatar } from "@radix-ui/themes";
 
 export const AvatarMenu = () => {

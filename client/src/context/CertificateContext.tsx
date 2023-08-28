@@ -1,6 +1,6 @@
 import { ContextProps, FieldsType, StateField, childrenProps } from "@/types";
 import React, { createContext, useContext, useState, useRef } from "react";
-import signature from "@/components/certificate/templates/signature.png"
+import signature from "@/components/certificate/templates/signature.png";
 
 const CertificateContext = createContext<ContextProps | null>(null);
 let descriptionText = "Congratulations on achieving excellence in our React Course! This Certificate of Achievement recognizes your dedication, skill, and commitment to mastering React's concepts and techniques. May your accomplishments continue to pave the way for your successful journey in the world of web development.";
@@ -17,7 +17,7 @@ let defaultFields: FieldsType[] = [
     MW: 400,
     T: 525,
     color: "#000000",
-    image: null,
+    image: "",
     text: "Founder",
     type: "text",
   },

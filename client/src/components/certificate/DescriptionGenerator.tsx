@@ -7,7 +7,7 @@ const DescriptionGenerator: React.FC<Props> = () => {
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const [suggestedDescription, setSuggestedDescription] = useState<string>("");
 
-  const apiKey = import.meta.env.VITE_CHATGPT_APIKEY as string; // Replace with your actual API key
+  const apiKey = import.meta.env.VITE_APP_CHATGPT_APIKEY as string; // Replace with your actual API key
   const apiUrl = "https://api.openai.com/v1/chat/completions";
 
   const handleTopicChange = (topic: string) => {

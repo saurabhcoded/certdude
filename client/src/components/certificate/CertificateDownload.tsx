@@ -1,6 +1,5 @@
 import { useCertificate } from "@/context/CertificateContext";
 import { MutableRefObject } from "react";
-import { Button } from "@radix-ui/themes";
 
 export const CertificateDownload = ({ canvasRef }: { canvasRef: MutableRefObject<HTMLCanvasElement | null> }) => {
   const { title } = useCertificate();

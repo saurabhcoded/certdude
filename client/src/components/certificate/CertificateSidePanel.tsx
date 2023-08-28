@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { useCertificate } from "@/context/CertificateContext";
-import DescriptionGenerator from "./DescriptionGenerator";
 
 export const CertificateSidePanel = () => {
-  const { title, setTitle, desc, setDesc, QRStatus, setQRStatus } = useCertificate();
+  const { title, setTitle, desc, setDesc } = useCertificate();
   return (
     <div>
       <form className="">

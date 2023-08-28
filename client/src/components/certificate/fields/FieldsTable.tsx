@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import { useCertificate } from "@/context/CertificateContext";
 import { FieldRow } from "./FieldRow";
 import { AddFieldDialog } from "./AddFieldDialog";
 
 const FieldsTable = () => {
-  const { fields, setFields } = useCertificate();
+  const { fields } = useCertificate();
 
   console.log(fields);
   return (

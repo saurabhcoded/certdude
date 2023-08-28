@@ -1,5 +1,3 @@
-import React from "react";
-import { AddFieldDialog } from "./fields/AddFieldDialog";
 import FieldsTable from "./fields/FieldsTable";
 
 export const CertificateFieldManage = () => {

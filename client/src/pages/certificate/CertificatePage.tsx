@@ -1,4 +1,4 @@
-import { CertificateCanvas, CertificateDownload, CertificateFieldManage, CertificateSidePanel } from "@/components";
+import { CertificateCanvas, CertificateFieldManage, CertificateSidePanel } from "@/components";
 import React from "react";
 export const CertificatePage: React.FC = () => {
   return (
