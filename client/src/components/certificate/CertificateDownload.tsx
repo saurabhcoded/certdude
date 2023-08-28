@@ -1,8 +1,27 @@
-export const CertificateDownload = () => {
+import { useCertificate } from "@/context/CertificateContext";
+import { MutableRefObject } from "react";
+import { Button } from "@radix-ui/themes";
+
+export const CertificateDownload = ({ canvasRef }: { canvasRef: MutableRefObject<HTMLCanvasElement | null> }) => {
+  const { title } = useCertificate();
+  const download = async () => {
+    console.log(canvasRef);
+    if (canvasRef.current) {
+      const dataURL = canvasRef.current.toDataURL("image/png"); // Explicitly specify MIME type
+      var link = document.createElement("a");
+      link.download = `${title.text}.png`;
+      link.href = dataURL;
+      console.log(link);
+      link.click();
+    }
+  };
   return (
     <div className="mt-5">
-      <h5 className="font-bold">Certificate Bulk Download</h5>
-      <div className="relative overflow-x-auto sm:rounded-lg border border-black-700">
+      <button className="btn hover:bg-green-500" onClick={download}>
+        Download Certificate
+      </button>
+      {/* <h5 className="font-bold">Certificate Bulk Download</h5> */}
+      {/* <div className="relative overflow-x-auto sm:rounded-lg border border-black-700">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -91,7 +110,7 @@ export const CertificateDownload = () => {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   );
 };

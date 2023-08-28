@@ -13,7 +13,6 @@ export const CertificatePage: React.FC = () => {
           </div>
         </div>
         <CertificateFieldManage />
-        <CertificateDownload />
       </div>
     </div>
   );
