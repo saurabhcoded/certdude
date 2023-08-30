@@ -30,10 +30,6 @@ export interface FieldsType {
   LH: number; // Line Height
 }
 export interface ContextProps {
-  title: StateField;
-  setTitle: React.Dispatch<React.SetStateAction<StateField>>;
-  desc: StateField;
-  setDesc: React.Dispatch<React.SetStateAction<StateField>>;
   QRStatus: boolean;
   setQRStatus: React.Dispatch<React.SetStateAction<boolean>>;
   fields: FieldsType[];

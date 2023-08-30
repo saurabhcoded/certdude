@@ -6,7 +6,8 @@ import DefaultImage from "../templates/template1.png";
 
 const Canvas = (props: any) => {
   const [baseImage, setBaseImage] = useState<File | string | null>(DefaultImage);
-  const { title, desc, fields } = useCertificate();
+  const { fields } = useCertificate();
+  const [canvasScaleFactor, setCanvasScaleFactor] = useState<number>(0);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -18,6 +19,11 @@ const Canvas = (props: any) => {
     if (!data.text) {
       return;
     }
+    const ScaledFontSize = data.FS * canvasScaleFactor;
+    const ScaledFontMaxWidth = data.MW * canvasScaleFactor;
+    const ScaledX = data.L * canvasScaleFactor;
+    const ScaledY = data.T * canvasScaleFactor;
+    const ScaledLH = data.LH * canvasScaleFactor;
     const words = data.text.split(" ");
     const lines: string[] = [];
 
@@ -26,8 +32,7 @@ const Canvas = (props: any) => {
     for (let i = 1; i < words.length; i++) {
       const testLine = currentLine + " " + words[i];
       const testWidth = ctx.measureText(testLine).width;
-
-      if (testWidth <= data.MW) {
+      if (testWidth <= ScaledFontMaxWidth) {
         currentLine = testLine;
       } else {
         lines.push(currentLine);
@@ -37,26 +42,34 @@ const Canvas = (props: any) => {
 
     lines.push(currentLine);
     ctx.fillStyle = data.color;
-    ctx.font = `${data.FW} ${data.FS}px ${data.FM}`;
+    ctx.font = `${data.FW} ${ScaledFontSize}px ${data.FM}`;
     if (["center", "left", "right"].includes(data.FD)) {
       ctx.textAlign = data.FD === "center" ? "center" : data.FD === "right" ? "right" : "left";
     }
     for (let i = 0; i < lines.length; i++) {
-      const drawY = Number(data.T) + i * Number(data.LH);
-      ctx.fillText(lines[i], data.L, drawY);
+      const drawY = Number(ScaledY) + i * Number(ScaledLH);
+      ctx.fillText(lines[i], ScaledX, drawY);
+    }
+  }
+  function drawLayerImage(ctx: CanvasRenderingContext2D, field: FieldsType) {
+    if (field.image) {
+      let ScaledX = field.L * canvasScaleFactor;
+      let ScaledY = field.T * canvasScaleFactor;
+      let ScaledWidth = field.MW * canvasScaleFactor;
+      let ScaledHeight = field.FS * canvasScaleFactor;
+      const fieldImage = new Image();
+      fieldImage.src = field.image instanceof File ? URL.createObjectURL(field.image) : field.image;
+      fieldImage.onload = () => {
+        // ctx.clearRect(ScaledX, ScaledY, ScaledWidth, ScaledHeight);
+        ctx.drawImage(fieldImage, ScaledX, ScaledY, ScaledWidth, ScaledHeight);
+      };
     }
   }
   const drawField = (ctx: CanvasRenderingContext2D) => {
     if (fields.length) {
       fields.forEach((field: FieldsType) => {
         if (field.type == "file") {
-          if (field.image) {
-            const fieldImage = new Image();
-            fieldImage.src = field.image instanceof File ? URL.createObjectURL(field.image) : field.image;
-            fieldImage.onload = () => {
-              ctx.drawImage(fieldImage, field.L, field.T, field.MW, field.FS);
-            };
-          }
+          drawLayerImage(ctx, field);
         } else {
           drawWrappedText(ctx, field);
         }
@@ -71,18 +84,14 @@ const Canvas = (props: any) => {
         // managing Height And Width
         const wrapperWidth = wrapperRef.current?.offsetWidth || 0;
         const scaleFactor = wrapperWidth / CertificateImage.width;
+        setCanvasScaleFactor(scaleFactor);
         const canvasHeight = CertificateImage.height * scaleFactor;
         if (canvasRef.current) {
           canvasRef.current.width = wrapperWidth;
           canvasRef.current.height = canvasHeight;
           // writing Title
+          ctx.clearRect(0, 0, wrapperWidth, canvasHeight);
           ctx.drawImage(CertificateImage, 0, 0, wrapperWidth, canvasHeight);
-          if (title) {
-            drawWrappedText(ctx, title);
-          }
-          if (desc) {
-            drawWrappedText(ctx, desc);
-          }
           drawField(ctx);
         }
       };
@@ -97,7 +106,7 @@ const Canvas = (props: any) => {
         draw(ctx);
       }
     }
-  }, [baseImage, title, desc, fields]);
+  }, [baseImage, canvasScaleFactor, fields]);
   return (
     <div>
       <input type="file" name="image" id="" className="file-input" onChange={(e) => handleImageChange(e)} />
