@@ -4,7 +4,8 @@
   "description": "Certificate Generator which can be used in industry of Learning Management System and others to certify their student or bulk sending certification email.",
   "main": "index.js",
   "scripts": {
-    "dev": "cd client && npm start"
+    "dev:client": "cd client && npm start",
+    "dev:server": "cd server && npm run dev"
   },
   "repository": {
     "type": "git",
