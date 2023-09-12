@@ -4,7 +4,7 @@
   "description": "Certificate Generator which can be used in industry of Learning Management System and others to certify their student or bulk sending certification email.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cd client && npm start"
   },
   "repository": {
     "type": "git",
